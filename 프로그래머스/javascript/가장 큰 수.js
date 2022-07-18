@@ -5,7 +5,8 @@ function solution(numbers) {
     numbers.sort((a, b) => {
         return Number("" + b + a) - Number("" + a + b)
     });
-    return Number(numbers.join("")).toString();
+    if (Number(numbers.join("")) === 0) return "0";
+    return numbers.join("");
 }
 
 for (let index = 0; index < numbersArray.length; index++) {
