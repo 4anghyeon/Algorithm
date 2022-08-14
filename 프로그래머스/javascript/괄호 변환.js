@@ -5,9 +5,8 @@ function solution(p) {
 }
 
 function reorder(str) {
-    let test = 0;
     while (!isPerfectString(str)) {
-        let [u, v] = getBalacnedString(str);
+        let [u, v] = getBalancedString(str);
         if (isPerfectString(u)) str = u + reorder(v);
         else {
             let temp = "(" + reorder(v) + ")";
@@ -36,7 +35,7 @@ function isPerfectString(str) {
     return false;
 }
 
-function getBalacnedString(str) {
+function getBalancedString(str) {
     let leftCount = 0;
     let rightCount = 0;
     let index = 0;
