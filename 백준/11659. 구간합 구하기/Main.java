@@ -1,31 +1,28 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Main {
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("test");
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        int numberOfData = sc.nextInt();
-        // int numberOfQuery = sc.nextInt();
-        // int[] sumArray = new int[numberOfData];
+        String[] firstLine = br.readLine().split(" ");
+        int numberOfData = Integer.parseInt(firstLine[0]);
+        int numberOfQuery = Integer.parseInt(firstLine[1]);
+        int[] sumArray = new int[numberOfData + 1];
 
-        // for (int i = 0; i < numberOfData; i++) {
-        // if (i == 0)
-        // sumArray[i] = sc.nextInt();
-        // else {
-        // sumArray[i] = sumArray[i - 1] + sc.nextInt();
-        // }
-        // }
+        String[] numbers = br.readLine().split(" ");
+        for (int i = 1; i < numberOfData + 1; i++) {
+            sumArray[i] = sumArray[i - 1] + Integer.parseInt(numbers[i - 1]);
+        }
 
-        // for (int i = 0; i < numberOfQuery; i++) {
-        // int start = sc.nextInt();
-        // int end = sc.nextInt();
-        // if (end > start)
-        // System.out.println(sumArray[end] - sumArray[start - 1]);
-        // else
-        // System.out.println(sumArray[start] - sumArray[end - 1]);
-        // }
+        for (int i = 1; i < numberOfQuery + 1; i++) {
+            String[] range = br.readLine().split(" ");
+            int start = Integer.parseInt(range[0]);
+            int end = Integer.parseInt(range[1]);
+            System.out.println(sumArray[end] - sumArray[start - 1]);
+        }
 
     }
 }
