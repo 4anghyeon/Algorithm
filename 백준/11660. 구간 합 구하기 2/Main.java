@@ -12,15 +12,22 @@ public class Main {
         int n = Integer.parseInt(firstLine[0]);
         int queryLength = Integer.parseInt(firstLine[1]);
 
-        int[][] sumTable = new int[n][n];
+        int[][] numTable = new int[n+1][n+1];
+        int[][] sumTable = new int[n+1][n+1];
 
-        for (int row = 0; row < n; row++) {
+        // 숫자 테이블 초기화
+        for (int row = 1; row <= n; row++) {
             String[] line = br.readLine().split(" ");
 
-            for (int column = 0; column < n; column++) {
-                if (row == 0 && column == 0) sumTable[row][column] = Integer.parseInt(line[column]);
-                else if (column == 0) sumTable[row][column] = sumTable[row-1][n-1] + Integer.parseInt(line[column]);
-                else sumTable[row][column] = sumTable[row][column-1] + Integer.parseInt(line[column]);
+            for (int column = 1; column <= n; column++) {
+                numTable[row][column] = Integer.parseInt(line[column - 1]);
+            }
+        }
+
+        // 구간합 테이블
+        for (int row = 1; row <= n; row++) {
+            for (int column = 1; column <= n; column++) {
+                sumTable[row][column] = sumTable[row][column-1] + sumTable[row-1][column] - sumTable[row-1][column-1] + numTable[row][column];
             }
         }
 
@@ -31,8 +38,7 @@ public class Main {
             int x2 = Integer.parseInt(line[2]);
             int y2 = Integer.parseInt(line[3]);
 
-            if (y1 == 1) System.out.println(sumTable[x2 - 1][y2 - 1]);
-            else System.out.println(sumTable[x2 - 1][y2 - 1] - sumTable[x1 - 1][y1 - 2 + (x2 - x1)]);
+            System.out.println(sumTable[x2][y2] - sumTable[x1-1][y2] - sumTable[x2][y1 -1] + sumTable[x1-1][y1-1]);
 
         }
     }
