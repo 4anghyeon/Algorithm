@@ -8,12 +8,12 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
 
-        int count = 1;
+        int count = 0;
         int startIndex = 1;
         int endIndex = 1;
         int sum = 1;
 
-        while (endIndex != n) {
+        while (endIndex <= n) {
             if (sum == n) {
                 endIndex++;
                 count++;
