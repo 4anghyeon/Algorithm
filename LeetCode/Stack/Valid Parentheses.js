@@ -43,3 +43,29 @@ var isValid = function(s) {
   }
   return answer;
 };
+
+
+// 풀이 2
+// 열린 괄호에 대해서 닫힌 괄호를 넣어두고, 닫힌 괄호를 빼내는 방식으로 진행
+
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var isValid = function(s) {
+  const bracketStack = [];
+  const bracketPair = {
+    "(": ")",
+    "[": "]",
+    "{": "}"
+  }
+  for (const c of s) {
+    if (bracketPair[c]) {
+      bracketStack.push(bracketPair[c]);
+    } else {
+      const last = bracketStack.pop();
+      if (c !== last) return false;
+    }
+  }
+  return bracketStack.length === 0;
+};
