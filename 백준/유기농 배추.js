@@ -45,7 +45,7 @@ const input =("10\n" +
   "50 50 1\n" +
   "0 0").split("\n");
 
-console.time("test")
+console.time("test");
 
 const testCaseSize = +input[0];
 let testStartIndex = 1;
@@ -69,22 +69,20 @@ for (let i = 0; i < testCaseSize; i++) {
 
   const visitedNodes = new Set();
   const bfs = (field, node) => {
-    const queue = [node.join("")];
+    const queue = [node];
     const movement = [1, -1];
 
     let count  = 0;
 
     while (queue.length > 0) {
-      let [x, y] = queue.shift().split("").map(Number);
+      let [x, y] = queue.shift();
       visitedNodes.add(`${x}${y}`)
 
       // 좌우에 인접노드가 있나 검색
       for (let i = 0; i < movement.length; i++) {
         const nx = x + movement[i];
         if (nx < width && nx >= 0 && !visitedNodes.has(`${nx}${y}`) && field[nx][y] === 1) {
-          if (!queue.includes([nx, y].join(""))) {
-            queue.push([nx, y].join(""))
-          }
+          queue.push([nx, y])
         }
       }
 
@@ -92,9 +90,7 @@ for (let i = 0; i < testCaseSize; i++) {
       for (let i = 0; i < movement.length; i++) {
         const ny = y + movement[i];
         if (ny < height && ny >= 0 && !visitedNodes.has(`${x}${ny}`) && field[x][ny] === 1) {
-          if (!queue.includes([x, ny].join(""))) {
-            queue.push([x, ny].join(""))
-          }
+          queue.push([x, ny])
         }
       }
       count++;
@@ -114,6 +110,5 @@ for (let i = 0; i < testCaseSize; i++) {
   testStartIndex = testStartIndex + cabbageAmount + 1;
   console.log(count)
 }
-
 
 console.timeEnd("test")
