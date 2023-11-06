@@ -1,6 +1,6 @@
 /**
  * @param {TreeNode} root
- * @return {number}
+ * @return {shouldBeNumber}
  */
 let max = -Number.MIN_VALUE;
 var maxDepth = function(root) {
