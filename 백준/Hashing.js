@@ -1,5 +1,5 @@
-const input = ("3\n" +
-  "zzz").split("\n");
+var fs = require('fs');
+var input = fs.readFileSync('/dev/stdin').toString().split('\n');
 
 input.shift();
 
