@@ -24,14 +24,3 @@ function solution(k, score) {
     })
     return answer;
 }
-
-const findIndex = (arr, score) => {
-    let index = 0;
-    for (let i = 0 ; i < arr.length ; i++) {
-        let value = arr[i];
-        if (value < score) {
-            index = i;
-        }
-    }
-    return index;
-}
