@@ -3,9 +3,10 @@ function solution(n) {
     
     let a = BigInt(0);
     let b = BigInt(1);
+    
     for (let i = 2; i <= n ; i++) {
         let temp = b;
-        b = a + b
+        b = a + b;
         a = temp;
     }
     
