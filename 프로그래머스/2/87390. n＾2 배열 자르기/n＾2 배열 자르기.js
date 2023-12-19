@@ -13,15 +13,13 @@ function solution(n, left, right) {
     let arr = [];
     
     for (let i = left + 1; i <= right + 1; i++) {
-        if (i <= n) arr.push(i);
+        if (i % n === 0) arr.push(n);
         else {
-            if (i % n === 0) arr.push(n);
-            else {
-                let a = Math.ceil(i / n);
-                if (i % n > a) arr.push(i % n);
-                else arr.push(a)
-            }
+            let a = Math.ceil(i / n);
+            if (i % n > a) arr.push(i % n);
+            else arr.push(a)
         }
     }
+    
     return arr;
 }
